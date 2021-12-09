@@ -7,16 +7,16 @@ public class User implements Serializable {
     //inicialização das variaveis
     String nome, senha, email, user;
     Boolean manterlogado = false;
-    arraylist<Contato> contatos;
+    ArrayList<Contato> contatos;
 
     //constructor
-    public user (String n, String u, String s, String e, Boolean manter){
+    public User (String n, String u, String s, String e, Boolean manter){
         this.nome = n;
         this.senha = s;
         this.user = u;
         this.email = e;
         this.manterlogado = manter;
-        this.contatos = new arraylist<Contato>();
+        this.contatos = new ArrayList<Contato>();
     }
 
     //BIN METHODS
@@ -56,19 +56,19 @@ public class User implements Serializable {
     }
 
     //ManterLogin
-    public Boolean getManterLogin(){
+    public Boolean isManterlogado(){
         return manterlogado;
     }
-    public void setManterLogin(Boolean manter){
+    public void setManterlogado(Boolean manter){
         this.manterlogado = manter;
     }
 
     //Contatos
-    public ArrayList<Contatos> getContatos (){
+    public ArrayList<Contato> getContatos (){
         return contatos;
     }
 
-    public void setContatos (ArrayList<Contatos> c){
+    public void setContatos (ArrayList<Contato> c){
         this.contatos = c;
     }
 }

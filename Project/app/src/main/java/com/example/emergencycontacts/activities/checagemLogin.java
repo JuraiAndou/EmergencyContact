@@ -24,9 +24,9 @@ public class checagemLogin extends AppCompatActivity {
 
         //User user = new User()
 
-        Intent intent = new Intent(this, ListaDeContatos.class);
-        intent.putExtra( "user", user);
-        startActivity(intent);
+       // Intent intent = new Intent(this, ListaDeContatos.class);
+       // intent.putExtra( "user", user);
+       // startActivity(intent);
 
 
 
