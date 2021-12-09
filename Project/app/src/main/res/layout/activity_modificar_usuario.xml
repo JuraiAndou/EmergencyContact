@@ -36,7 +36,7 @@
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/edt_login"
+        app:layout_constraintBottom_toTopOf="@+id/edt_nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/edt_login"
+        android:id="@+id/edt_nome"
         android:layout_width="292dp"
         android:layout_height="53dp"
         android:layout_marginTop="20dp"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_login" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
 
     <EditText
         android:id="@+id/edt_email"

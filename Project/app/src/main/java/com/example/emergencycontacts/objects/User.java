@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class User implements Serializable {
     //inicialização das variaveis
     String nome, senha, email, user;
-    Boolean manterlogado = false;
+    boolean manterlogado = false;
     ArrayList<Contato> contatos;
 
     //constructor
-    public User (String n, String u, String s, String e, Boolean manter){
+    public User (String n, String u, String s, String e, boolean manter){
         this.nome = n;
         this.senha = s;
         this.user = u;
@@ -56,10 +56,10 @@ public class User implements Serializable {
     }
 
     //ManterLogin
-    public Boolean isManterlogado(){
+    public boolean isManterlogado(){
         return manterlogado;
     }
-    public void setManterlogado(Boolean manter){
+    public void setManterlogado(boolean manter){
         this.manterlogado = manter;
     }
 

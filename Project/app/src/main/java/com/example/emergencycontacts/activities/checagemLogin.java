@@ -1,21 +1,25 @@
 package com.example.emergencycontacts.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.emergencycontacts.R;
+import com.example.emergencycontacts.objects.User;
 
 public class checagemLogin extends AppCompatActivity {
-    //Iniciação das variaveis
+    //Iniciação das variaveis da tela
     EditText edtUser, edtSenha;
     Button btEntrar, btCadas;
 
     //Variavies para verificação das caixas de texto
-    Boolean fTUser, fTSenha = true;
+    boolean fTUser, fTSenha = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +34,31 @@ public class checagemLogin extends AppCompatActivity {
 
 
 
+    }
+
+    //metodo para montar o objeto do usuario baseado nos dados armazenado
+    private User carregarObUser(){
+        User user= null;
+
+        //Carregando dados salvo no armazenamento
+        SharedPreferences userSaved = getSharedPreferences("userLocal", Activity.MODE_PRIVATE);
+        String nomeSalvo = userSaved.getString("nome", "");
+        String senhaSalva = userSaved.getString("senha", "");
+        String emailSalvo = userSaved.getString("email", "");
+        String userSalvo = userSaved.getString("user", "");
+        boolean manterLogado = userSaved.getBoolean("ManterLogado", false);
+
+        //criando objeto do usuario
+        user = new User (nomeSalvo,senhaSalva, emailSalvo, userSalvo, manterLogado);
+
+        return user;
+    }
+
+    private boolean isManterLogado(){
+        //Pega somente o dado para saber se o usario deseja ficar logado
+        SharedPreferences userSaved = getSharedPreferences("userLocal", Activity.MODE_PRIVATE);
+        boolean manterLogado = userSaved.getBoolean("manterLogado", false);
+
+        return manterLogado;
     }
 }

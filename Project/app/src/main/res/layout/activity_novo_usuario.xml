@@ -25,7 +25,7 @@
         android:id="@+id/tx_modificarUsuario"
         android:layout_width="291dp"
         android:layout_height="65dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="144dp"
         android:contentDescription="Novo usuario"
         android:fontFamily="@font/montserrat_bold"
         android:text="NOVO USUÁRIO"
@@ -33,18 +33,16 @@
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/edt_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edt_login"
+        android:id="@+id/edt_nome"
         android:layout_width="292dp"
         android:layout_height="53dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/montserrat"
@@ -56,7 +54,26 @@
         android:textColor="#A3A3A3"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_login" />
+
+    <EditText
+        android:id="@+id/edt_login"
+        android:layout_width="292dp"
+        android:layout_height="53dp"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="Defina seu Login"
+        android:inputType="textPersonName"
+        android:text="Login"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#A3A3A3"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_modificarUsuario" />
 
@@ -78,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_login" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
 
     <EditText
         android:id="@+id/edt_email"
