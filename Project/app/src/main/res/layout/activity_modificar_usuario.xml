@@ -141,14 +141,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bt_menuButton"
-            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-            android:layout_width="436dp"
-            android:layout_height="65dp"
-            android:layout_gravity="bottom"
-            app:backgroundTint="#FFFCFC"
-            app:fabAnimationMode="slide" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btmenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/activity_main_bottom_actions" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

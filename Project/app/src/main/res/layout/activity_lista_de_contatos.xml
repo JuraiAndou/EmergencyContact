@@ -5,19 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bt_menuButton"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="436dp"
-        android:layout_height="65dp"
-        android:layout_gravity="bottom"
-        app:backgroundTint="#191919"
-        app:fabAnimationMode="slide"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="BottomAppBar" />
+        app:menu="@menu/activity_main_bottom_actions" />
 
     <ListView
         android:id="@+id/list_contatosDoApp"
