@@ -30,6 +30,7 @@ public class novoUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_usuario);
+        getSupportActionBar().hide();
 
         //Atribuindo as informações
         edtUser = (EditText) findViewById(R.id.edt_login2);
@@ -41,54 +42,6 @@ public class novoUsuario extends AppCompatActivity {
 
         btCriar = (Button) findViewById(R.id.bt_criar);
 
-        //Eventos de limpar componentes
-        //Usuario
-        edtUser.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (fTUser){
-                    fTUser=false;
-                    edtUser.setText("");
-                }
-                return false;
-            }
-        });
-
-        //Nome
-        edtNome.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (fTNome){
-                    fTNome=false;
-                    edtNome.setText("");
-                }
-                return false;
-            }
-        });
-
-        //Senha
-        edtSenha.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (fTSenha){
-                    fTSenha=false;
-                    edtSenha.setText("");
-                }
-                return false;
-            }
-        });
-
-        //Email
-        edtEmail.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (fTEmail){
-                    fTEmail=false;
-                    edtEmail.setText("");
-                }
-                return false;
-            }
-        });
 
         //Evento pra recuparar os valores do componetes
         btCriar.setOnClickListener(new View.OnClickListener() {

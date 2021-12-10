@@ -27,13 +27,14 @@ public class checagemLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checagem_login);
+        getSupportActionBar().hide();
 
         //Verificação para saber se existe usuario pra se manter logado
         if (isManterLogado()) {
             User user = carregarObUser();
 
             Intent init = new Intent(checagemLogin.this, listaDeContatos.class);
-            init.putExtra("Usuario", user);
+            init.putExtra("usuario", user);
             startActivity(init);
             finish();
 
@@ -43,31 +44,6 @@ public class checagemLogin extends AppCompatActivity {
             edtSenha = (EditText) findViewById(R.id.edt_senha1);
             btEntrar = (Button) findViewById(R.id.bt_entrar);
             btCadas = (Button) findViewById(R.id.bt_cadastro);
-
-            //limpando espaços
-            //user
-            edtUser.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if(fTUser){
-                        edtUser.setText("");
-                        fTUser = false;
-                    }
-                    return false;
-                }
-            });
-
-            //Senha
-            edtSenha.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if(fTSenha){
-                        edtSenha.setText("");
-                        fTSenha = false;
-                    }
-                    return false;
-                }
-            });
 
             //Logando
             btEntrar.setOnClickListener(new View.OnClickListener() {
