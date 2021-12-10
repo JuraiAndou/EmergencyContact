@@ -43,6 +43,7 @@ public class modificarContatos extends AppCompatActivity {
     public void salvarContato (Contato c){
         //Craindo armazenamento interno para o contato
         SharedPreferences userContato = getSharedPreferences("contatos", Activity.MODE_PRIVATE);
+        int num = userContato.getInt("numContatos", 0);
         SharedPreferences.Editor editorContato = userContato.edit();
 
 
