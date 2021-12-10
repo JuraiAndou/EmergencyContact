@@ -36,7 +36,7 @@
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/edt_nome"
+        app:layout_constraintBottom_toTopOf="@+id/edt_senha1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/edt_nome"
+        android:id="@+id/edt_senha1"
         android:layout_width="292dp"
         android:layout_height="53dp"
         android:layout_marginTop="20dp"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tx_modificarUsuario" />
 
     <EditText
-        android:id="@+id/edt_senha"
+        android:id="@+id/edt_nome2"
         android:layout_width="292dp"
         android:layout_height="53dp"
         android:layout_marginTop="12dp"
@@ -81,10 +81,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_senha1" />
 
     <EditText
-        android:id="@+id/edt_email"
+        android:id="@+id/edt_email2"
         android:layout_width="292dp"
         android:layout_height="53dp"
         android:layout_marginTop="16dp"
@@ -101,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_senha" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_nome2" />
 
     <Switch
         android:id="@+id/swt_login"
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.748"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email"
+        app:layout_constraintTop_toBottomOf="@+id/edt_email2"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

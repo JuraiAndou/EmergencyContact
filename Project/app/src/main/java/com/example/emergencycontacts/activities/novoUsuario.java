@@ -27,15 +27,15 @@ public class novoUsuario extends AppCompatActivity {
     Button btCriar;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_usuario);
 
         //Atribuindo as informações
-        edtUser = (EditText) findViewById(R.id.edt_login);
-        edtNome = (EditText) findViewById(R.id.edt_nome);
-        edtSenha = (EditText) findViewById(R.id.edt_senha);
-        edtEmail = (EditText) findViewById(R.id.edt_email);
+        edtUser = (EditText) findViewById(R.id.edt_login2);
+        edtNome = (EditText) findViewById(R.id.edt_nome2);
+        edtSenha = (EditText) findViewById(R.id.edt_senha2);
+        edtEmail = (EditText) findViewById(R.id.edt_email2);
 
         swManterLogado = (Switch) findViewById(R.id.swt_login);
 
@@ -123,11 +123,9 @@ public class novoUsuario extends AppCompatActivity {
                 User user =new User(nomeLocal,userLocal,senhaLocal,emailLocal,manterLogado);
 
 
-                //Ainda n fiz essa atividade entao ta comentada
-               // Intent intent=new Intent(NovoUsuario_Activity.this, AlterarContatos_Activity.class);
-                //intent.putExtra("usuario",user);
-               // startActivity(intent);
-
+                Intent intent = new Intent(novoUsuario.this, listaDeContatos.class);
+                intent.putExtra("usuario",user);
+                startActivity(intent);
 
                 finish();
             }
