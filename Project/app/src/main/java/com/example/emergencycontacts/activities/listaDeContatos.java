@@ -2,15 +2,19 @@ package com.example.emergencycontacts.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.emergencycontacts.R;
 import com.example.emergencycontacts.objects.User;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class listaDeContatos extends AppCompatActivity {
+public class listaDeContatos extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     ListView listaCont;
     User user;
     @Override
@@ -32,5 +36,24 @@ public class listaDeContatos extends AppCompatActivity {
                 }
             }
         }
+    }
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Checagem de o Item selecionado é o do perfil
+        /*if (item.getItemId() == R.id.anvPerfil) {
+            //Abertura da Tela MudarDadosUsario
+            Intent intent = new Intent(this, PerfilUsuario_Activity.class);
+            intent.putExtra("usuario", user);
+            startActivityForResult(intent, 1111);
+
+        }*/
+        // Checagem de o Item selecionado é o do perfil
+        if (item.getItemId() == R.id.anvMudar) {
+            //Abertura da Tela Mudar COntatos
+            Intent intent = new Intent(this, modificarContatos.class);
+            intent.putExtra("usuario", user);
+            startActivityForResult(intent, 1112);
+
+        }
+        return true;
     }
 }
