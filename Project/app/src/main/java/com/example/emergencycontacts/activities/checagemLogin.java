@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -32,8 +33,21 @@ public class checagemLogin extends AppCompatActivity {
        // intent.putExtra( "user", user);
        // startActivity(intent);
 
+        //Configura o btn cadastro
+        btCadas = findViewById(R.id.bt_cadastro);
+        btCadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActNovoUsuario();
+            }
+        });
 
 
+    }
+
+    public void openActNovoUsuario(){
+        Intent intent = new Intent(this, novoUsuario.class);
+        startActivity(intent);
     }
 
     //metodo para montar o objeto do usuario baseado nos dados armazenado

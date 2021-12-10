@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.23125" />
         <entry key="..\:/Users/T-Gamer/Documents/BlackWave/EmergencyContact/Project/app/src/main/res/layout-port/activity_novo_usuario.xml" value="0.2898550724637681" />
         <entry key="..\:/Users/T-Gamer/Documents/BlackWave/EmergencyContact/Project/app/src/main/res/layout/activity_alterar_contatos.xml" value="0.2898550724637681" />
         <entry key="..\:/Users/T-Gamer/Documents/BlackWave/EmergencyContact/Project/app/src/main/res/layout/activity_checagem_login.xml" value="0.28351449275362317" />
@@ -10,9 +11,10 @@
         <entry key="..\:/Users/T-Gamer/Documents/BlackWave/EmergencyContact/Project/app/src/main/res/layout/activity_main.xml" value="0.29257246376811596" />
         <entry key="..\:/Users/T-Gamer/Documents/BlackWave/EmergencyContact/Project/app/src/main/res/layout/activity_modificar_usuario.xml" value="0.2898550724637681" />
         <entry key="..\:/Users/T-Gamer/Documents/BlackWave/EmergencyContact/Project/app/src/main/res/layout/activity_novo_usuario.xml" value="0.2898550724637681" />
-        <entry key="app/src/main/res/layout/activity_checagem_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_alterar_contatos.xml" value="0.2006340579710145" />
+        <entry key="app/src/main/res/layout/activity_checagem_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_modificar_usuario.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_novo_usuario.xml" value="0.1033434650455927" />
+        <entry key="app/src/main/res/layout/activity_novo_usuario.xml" value="0.33" />
       </map>
     </option>
   </component>
