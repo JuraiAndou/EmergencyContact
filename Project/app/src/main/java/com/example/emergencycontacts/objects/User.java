@@ -25,7 +25,7 @@ public class User implements Serializable {
     }
     //nome
     public String getNome(){
-        return nome;
+        return this.nome;
     }
     public void setNome(String n){
         this.nome = n;
@@ -33,7 +33,7 @@ public class User implements Serializable {
 
     //Senha
     public String getSenha(){
-        return senha;
+        return this.senha;
     }
     public void setSenha(String s){
         this.senha = s;
@@ -41,7 +41,7 @@ public class User implements Serializable {
 
     //Login
     public String getUser(){
-        return user;
+        return this.user;
     }
     public void setUser(String u){
         this.user = u;
@@ -49,7 +49,7 @@ public class User implements Serializable {
 
     //Email
     public String getEmail(){
-        return email;
+        return this.email;
     }
     public void setEmail(String e){
         this.email= e;
@@ -57,7 +57,7 @@ public class User implements Serializable {
 
     //ManterLogin
     public boolean isManterlogado(){
-        return manterlogado;
+        return this.manterlogado;
     }
     public void setManterlogado(boolean manter){
         this.manterlogado = manter;
@@ -65,7 +65,7 @@ public class User implements Serializable {
 
     //Contatos
     public ArrayList<Contato> getContatos (){
-        return contatos;
+        return this.contatos;
     }
 
     public void setContatos (ArrayList<Contato> c){
