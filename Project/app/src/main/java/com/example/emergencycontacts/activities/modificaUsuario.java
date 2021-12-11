@@ -32,11 +32,18 @@ public class modificaUsuario extends AppCompatActivity implements BottomNavigati
         setContentView(R.layout.activity_modificar_usuario);
         getSupportActionBar().hide();
 
+        bnv = findViewById(R.id.btmenu);
+        bnv.setOnNavigationItemSelectedListener(this);
+        bnv.setSelectedItemId(R.id.anvPerfil);
+
         edtNome = (EditText) findViewById(R.id.edt_nome3);
         edtUser = (EditText) findViewById(R.id.edt_login3);
         edtSenha = (EditText) findViewById(R.id.edt_senha3);
         edtEmail = (EditText) findViewById(R.id.edt_email3);
         manterLogado = (Switch) findViewById(R.id.swt_login);
+        btMod = (Button) findViewById(R.id.bt_criar);
+
+
 
         //Recebendo o usuario da intent
         Intent intAnte = this.getIntent();
