@@ -111,7 +111,6 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
 
 
         }
-        Log.v("PDM3","contatos:"+contatos.size());
         user.setContatos(contatos);
     }
     protected  void preencherListViewImagens(User user){
@@ -136,31 +135,22 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
                 listItemMap.put("abrevs",contatosAbrevs[i]);
                 itemDataList.add(listItemMap);
             }
-            SimpleAdapter simpleAdapter = new SimpleAdapter(this,itemDataList,R.layout.list_view_layout_image,
-                    new String[]{"imageId","contato","abrevs"},new int[]{R.id.userImage, R.id.userTitle,R.id.userAbrev});
-
+            SimpleAdapter simpleAdapter = new SimpleAdapter(this,itemDataList,R.layout.list_view_layout_image, new String[]{"imageId","contato","abrevs"},new int[]{R.id.userImage, R.id.userTitle,R.id.userAbrev});
             lv.setAdapter(simpleAdapter);
-
-
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
                     if (checarPermissaoPhone_SMD(contatos.get(i).getNum())) {
-
                         Uri uri = Uri.parse(contatos.get(i).getNum());
                         Intent itLigar = new Intent(Intent.ACTION_CALL, uri);
                         startActivity(itLigar);
                     }
                 }
             });
-
         }
-
-
     }
     protected void preencherListView(User user) {
 
@@ -173,14 +163,9 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
             for (int j = 0; j < contatos.size(); j++) {
                 nomesSP[j] = contatos.get(j).getNome();
             }
-
             ArrayAdapter<String> adaptador;
-
             adaptador = new ArrayAdapter<String>(this, R.layout.list_view_layout, nomesSP);
-
             lv.setAdapter(adaptador);
-
-
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -188,77 +173,53 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                     if (checarPermissaoPhone_SMD(contatos.get(i).getNum())) {
-
                         Uri uri = Uri.parse(contatos.get(i).getNum());
-                        //   Intent itLigar = new Intent(Intent.ACTION_DIAL, uri);
                         Intent itLigar = new Intent(Intent.ACTION_CALL, uri);
                         startActivity(itLigar);
                     }
-
-
                 }
             });
-        }//fim do IF do tamanho de contatos
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     protected boolean checarPermissaoPhone_SMD(String numero){
 
         numeroCall=numero;
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
-                == PackageManager.PERMISSION_GRANTED){
-
-            Log.v ("SMD","Tenho permissão");
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
             return true;
 
         } else {
 
             if ( shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)){
-
-                Log.v ("SMD","Primeira Vez");
-
-
-                String mensagem = "Nossa aplicação precisa acessar o telefone para discagem automática. Uma janela de permissão será solicitada";
+                String mensagem = "A aplicação precisa acessar o telefone para discagem automática. Uma janela de permissão será solicitada";
                 String titulo = "Permissão de acesso a chamadas";
                 int codigo =1;
                 UIEducacionalPermissao mensagemPermissao = new UIEducacionalPermissao(mensagem,titulo, codigo);
-
                 mensagemPermissao.onAttach ((Context)this);
                 mensagemPermissao.show(getSupportFragmentManager(), "primeiravez2");
-
             }else{
-                String mensagem = "Nossa aplicação precisa acessar o telefone para discagem automática. Uma janela de permissão será solicitada";
+                String mensagem = "A aplicação precisa acessar o telefone para discagem automática. Uma janela de permissão será solicitada";
                 String titulo = "Permissão de acesso a chamadas II";
                 int codigo =1;
-
                 UIEducacionalPermissao mensagemPermissao = new UIEducacionalPermissao(mensagem,titulo, codigo);
                 mensagemPermissao.onAttach ((Context)this);
                 mensagemPermissao.show(getSupportFragmentManager(), "segundavez2");
-                Log.v ("SMD","Outra Vez");
-
             }
         }
         return false;
     }
-
-
+    
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 2222:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "VALEU", Toast.LENGTH_LONG).show();
                     Uri uri = Uri.parse(numeroCall);
-                    //   Intent itLigar = new Intent(Intent.ACTION_DIAL, uri);
                     Intent itLigar = new Intent(Intent.ACTION_CALL, uri);
                     startActivity(itLigar);
-
                 } else {
-                    Toast.makeText(this, "SEU FELA!", Toast.LENGTH_LONG).show();
-
                     String mensagem = "Seu aplicativo pode ligar diretamente, mas sem permissão não funciona. Se você marcou não perguntar mais, você deve ir na tela de configurações para mudar a instalação ou reinstalar o aplicativo  ";
                     String titulo = "Porque precisamos telefonar?";
                     UIEducacionalPermissao mensagemPermisso = new UIEducacionalPermissao(mensagem, titulo, 2);
@@ -270,49 +231,38 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Checagem de o Item selecionado é o do perfil
+        // Botões de navegação
         if (item.getItemId() == R.id.anvPerfil) {
-            //Abertura da Tela MudarDadosUsario
+            //Abertura da Tela de alterar perfil
             Intent intent = new Intent(this, modificaUsuario.class);
             intent.putExtra("usuario", user);
             startActivityForResult(intent, 1111);
-
         }
-        // Checagem de o Item selecionado é o do perfil
         if (item.getItemId() == R.id.anvMudar) {
-            //Abertura da Tela Mudar COntatos
+            //Abertura da Tela de modificar
             Intent intent = new Intent(this, modificarContatos.class);
             intent.putExtra("usuario", user);
             startActivityForResult(intent, 1112);
-
         }
         return true;
     }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Caso seja um Voltar ou Sucesso selecionar o item Ligar
-
-        if (requestCode == 1111) {//Retorno de Mudar Perfil
+        //Botão de Mudar Perfil
+        if (requestCode == 1111) {
             bnv.setSelectedItemId(R.id.anvLigar);
             user=atualizarUser();
-            setTitle("Contatos de Emergência de "+user.getNome());
+            setTitle("Contatos Emergênciais de "+user.getNome());
             atualizarListaDeContatos(user);
-            // preencherListViewImagens(user);
-            preencherListView(user); //Montagem do ListView
+            preencherListView(user);
         }
-
-        if (requestCode == 1112) {//Retorno de Mudar Contatos
+        //Botão de Mudar Contatos
+        if (requestCode == 1112) {
             bnv.setSelectedItemId(R.id.anvLigar);
             atualizarListaDeContatos(user);
-            //preencherListViewImagens(user);
-            preencherListView(user); //Montagem do ListView
+            preencherListView(user);
         }
-
-
-
     }
-
     private User atualizarUser() {
         User user = null;
         SharedPreferences temUser= getSharedPreferences("usuarioPadrao", Activity.MODE_PRIVATE);
@@ -325,21 +275,14 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
         user=new User(nomeSalvo,loginSalvo,senhaSalva,emailSalvo,manterLogado);
         return user;
     }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onDialogPositiveClick(int codigo) {
-
         if (codigo==1){
             String[] permissions ={Manifest.permission.CALL_PHONE};
             requestPermissions(permissions, 2222);
-
         }
-
-
     }
-
-
 }
 
 
