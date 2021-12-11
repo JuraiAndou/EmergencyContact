@@ -52,6 +52,7 @@ public class modificaUsuario extends AppCompatActivity implements BottomNavigati
             if (date != null) {//testando se o dado obtido não é nulo e obtendo usuario
                 user = (User) date.getSerializable("usuario");
 
+
             }
         }
 
@@ -85,16 +86,14 @@ public class modificaUsuario extends AppCompatActivity implements BottomNavigati
         SharedPreferences.Editor editor = localUser.edit();
 
         //eviando as informação para o armazenamento
-        editor.putString("nome", user.getNome());
-        editor.putString("senha", user.getSenha());
-        editor.putString("email", user.getEmail());
-        editor.putString("user", user.getUser());
-        editor.putBoolean("manterLogado", user.isManterlogado());
+        editor.putString("nome", u.getNome());
+        editor.putString("senha", u.getSenha());
+        editor.putString("email", u.getEmail());
+        editor.putString("user", u.getUser());
+        editor.putBoolean("manterLogado", u.isManterlogado());
 
         editor.commit();
-
         Toast.makeText(modificaUsuario.this,"Modificações Salvas",Toast.LENGTH_LONG).show();
-        finish();
     }
 
     @Override

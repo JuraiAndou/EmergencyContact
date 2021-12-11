@@ -68,9 +68,8 @@ public class checagemLogin extends AppCompatActivity {
 
                             //Abri o app na tela de lista de contatos
                             Intent init = new Intent(checagemLogin.this, listaDeContatos.class);
-                            init.putExtra("userLogin", user);
+                            init.putExtra("usuario", user);
                             startActivity(init);
-                            finish();
                         }else {
                             //Fala quando o valor não é igual ao armazenado
                             Toast.makeText(checagemLogin.this, "Login e senha incorretos", Toast.LENGTH_LONG).show();
