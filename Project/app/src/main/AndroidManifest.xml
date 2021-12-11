@@ -22,8 +22,12 @@
             android:label="Emergency Contacts"
             ></activity>
         <activity android:name=".activities.listaDeContatos"
-            android:label=""
+            android:label="Emergency Contacts"
             ></activity>
+        <activity android:name=".activities.modificarContatos"
+            android:label="Emergency Contacts"></activity>
+        <activity android:name=".activities.modificaUsuario"
+            android:label="Emergency Contacts"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

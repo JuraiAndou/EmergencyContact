@@ -16,45 +16,47 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="361dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/edt_pesquisar"
-            android:layout_width="311dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:autofillHints="Pesquisa"
             android:backgroundTint="#000000"
             android:ems="10"
             android:fontFamily="@font/montserrat"
+            android:hint="Pesquisa"
             android:inputType="textPersonName"
-            android:text="Pesquisar"
-            android:textColor="#676767" />
+            android:textColor="#676767"
+            android:textColorHint="#FF636363" />
 
         <Button
             android:id="@+id/bt_pesquisar"
-            android:layout_width="39dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoText="false"
-            android:background="@drawable/ic_baseline_search_24" />
+            android:background="@drawable/ic_baseline_search_24"
+            android:hint="shearch"
+            android:text=" "/>
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/list_contatoDoCelular"
-        android:layout_width="410dp"
-        android:layout_height="530dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:divider="#106FFD"
         android:dividerHeight="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_menuButton"
+        app:layout_constraintBottom_toTopOf="@+id/btmenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

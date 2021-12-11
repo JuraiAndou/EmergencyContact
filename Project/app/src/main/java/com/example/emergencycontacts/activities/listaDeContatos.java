@@ -17,10 +17,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class listaDeContatos extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     ListView listaCont;
     User user;
+    BottomNavigationView bnv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_contatos);
+        getSupportActionBar().hide();
+
+        //carrega o menu inferior
+        bnv = findViewById(R.id.btmenu);
+        bnv.setOnNavigationItemSelectedListener(this);
+        bnv.setSelectedItemId(R.id.anvLigar);
+
 
         //Obtendo componente da lista da tela
         listaCont = (ListView) findViewById(R.id.list_contatosDoApp);
@@ -39,13 +47,13 @@ public class listaDeContatos extends AppCompatActivity implements BottomNavigati
     }
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Checagem de o Item selecionado é o do perfil
-        /*if (item.getItemId() == R.id.anvPerfil) {
+        if (item.getItemId() == R.id.anvPerfil) {
             //Abertura da Tela MudarDadosUsario
-            Intent intent = new Intent(this, PerfilUsuario_Activity.class);
+            Intent intent = new Intent(this, modificaUsuario.class);
             intent.putExtra("usuario", user);
             startActivityForResult(intent, 1111);
 
-        }*/
+        }
         // Checagem de o Item selecionado é o do perfil
         if (item.getItemId() == R.id.anvMudar) {
             //Abertura da Tela Mudar COntatos

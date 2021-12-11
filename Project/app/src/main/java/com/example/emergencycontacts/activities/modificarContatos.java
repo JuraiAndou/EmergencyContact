@@ -32,6 +32,7 @@ public class modificarContatos extends AppCompatActivity implements BottomNaviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_contatos);
+        getSupportActionBar().hide();
 
         //Iniciando componetes
         edtPesquisa = (EditText) findViewById(R.id.edt_pesquisar);
