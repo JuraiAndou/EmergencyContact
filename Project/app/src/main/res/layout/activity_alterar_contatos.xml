@@ -44,6 +44,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/ic_baseline_search_24"
+            android:onClick="onClickBuscar"
             android:hint="shearch"
             android:text=" "/>
 

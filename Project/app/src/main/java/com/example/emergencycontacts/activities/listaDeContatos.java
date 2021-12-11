@@ -1,40 +1,46 @@
 package com.example.emergencycontacts.activities;
 
+import androidx.annotation.NonNull;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.example.emergencycontacts.R;
 import com.example.emergencycontacts.objects.Contato;
 import com.example.emergencycontacts.objects.User;
 import com.example.emergencycontacts.utils.UIEducacionalPermissao;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,52 +48,57 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class listaDeContatos extends AppCompatActivity implements UIEducacionalPermissao.NoticeDialogListener, BottomNavigationView.OnNavigationItemSelectedListener {
-    ListView listaCont;
-    User user;
-    BottomNavigationView bnv;
 
-    String numCall;
+    ListView lv;
+    BottomNavigationView bnv;
+    User user;
+
+    String numeroCall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_contatos);
 
-        //carrega o menu inferior
         bnv = findViewById(R.id.btmenu);
         bnv.setOnNavigationItemSelectedListener(this);
         bnv.setSelectedItemId(R.id.anvLigar);
 
+        lv = findViewById(R.id.listView1);
 
-        //Obtendo componente da lista da tela
-        listaCont = (ListView) findViewById(R.id.list_contatosDoApp);
-
-        //Recebendo o usuario da intent
-        Intent intAnte = this.getIntent();
-        if (intAnte != null){//vendo se houve um intent anterior
-            Bundle date = intAnte.getExtras();
-            if (date != null){//testando se o dado obtido não é nulo e obtendo usuario
-                user = (User) date.getSerializable("usuario");
-                if (user != null){//testando se o usuario não é nulo
-                    setTitle("Contatos emergênciais de " + user.getNome());
+        //Dados da Intent Anterior
+        Intent quemChamou = this.getIntent();
+        if (quemChamou != null) {
+            Bundle params = quemChamou.getExtras();
+            if (params != null) {
+                //Recuperando o Usuario
+                user = (User) params.getSerializable("usuario");
+                if (user != null) {
+                    setTitle("Contatos de Emergência de "+user.getNome());
+                    //  preencherListView(user); //Montagem do ListView
                     preencherListViewImagens(user);
+                    //  if (user.isTema_escuro()){
+                    //    ((ConstraintLayout) (lv.getParent())).setBackgroundColor(Color.BLACK);
+                    //}
                 }
             }
         }
+
     }
 
     protected void atualizarListaDeContatos(User user){
-        SharedPreferences recContatos = getSharedPreferences("contatos", Activity.MODE_PRIVATE);
-        int num = recContatos.getInt("numContatos", 0);
+        SharedPreferences recuperarContatos = getSharedPreferences("contatos", Activity.MODE_PRIVATE);
+
+        int num = recuperarContatos.getInt("numContatos", 0);
         ArrayList<Contato> contatos = new ArrayList<Contato>();
 
         Contato contato;
 
-        for (int i = 0; i < num; i++) {
-            String objSel = recContatos.getString("contato" + i, "");
-            if(objSel.compareTo("") != 0){
+
+        for (int i = 1; i <= num; i++) {
+            String objSel = recuperarContatos.getString("contato" + i, "");
+            if (objSel.compareTo("") != 0) {
                 try {
-                    ByteArrayInputStream bis =
-                            new ByteArrayInputStream(objSel.getBytes(StandardCharsets.ISO_8859_1.name()));
+                    ByteArrayInputStream bis = new ByteArrayInputStream(objSel.getBytes(StandardCharsets.ISO_8859_1.name()));
                     ObjectInputStream oos = new ObjectInputStream(bis);
                     contato = (Contato) oos.readObject();
 
@@ -98,13 +109,16 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
+
+
         }
-        Log.v("EmContacts","contatos:"+contatos.size());
+        Log.v("PDM3","contatos:"+contatos.size());
         user.setContatos(contatos);
     }
+    protected  void preencherListViewImagens(User user){
 
-    private void preencherListViewImagens(User user) {
         final ArrayList<Contato> contatos = user.getContatos();
         Collections.sort(contatos);
         if (contatos != null) {
@@ -128,11 +142,12 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
             SimpleAdapter simpleAdapter = new SimpleAdapter(this,itemDataList,R.layout.list_view_layout_image,
                     new String[]{"imageId","contato","abrevs"},new int[]{R.id.userImage, R.id.userTitle,R.id.userAbrev});
 
-            listaCont.setAdapter(simpleAdapter);
+            lv.setAdapter(simpleAdapter);
 
 
-            listaCont.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -150,8 +165,9 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
             });
 
         }
-    }
 
+
+    }
     protected void preencherListView(User user) {
 
         final ArrayList<Contato> contatos = user.getContatos();
@@ -168,11 +184,12 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
 
             adaptador = new ArrayAdapter<String>(this, R.layout.list_view_layout, nomesSP);
 
-            listaCont.setAdapter(adaptador);
+            lv.setAdapter(adaptador);
 
 
-            listaCont.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -190,10 +207,10 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
         }//fim do IF do tamanho de contatos
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     protected boolean checarPermissaoPhone_SMD(String numero){
 
-        numCall=numero;
+        numeroCall=numero;
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
                 == PackageManager.PERMISSION_GRANTED){
 
@@ -203,7 +220,7 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
 
         } else {
 
-            if (shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)){
+            if ( shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)){
 
                 Log.v ("SMD","Primeira Vez");
 
@@ -231,6 +248,7 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
         return false;
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
@@ -239,7 +257,7 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
             case 2222:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "VALEU", Toast.LENGTH_LONG).show();
-                    Uri uri = Uri.parse(numCall);
+                    Uri uri = Uri.parse(numeroCall);
                     //   Intent itLigar = new Intent(Intent.ACTION_DIAL, uri);
                     Intent itLigar = new Intent(Intent.ACTION_CALL, uri);
                     startActivity(itLigar);
@@ -256,7 +274,6 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
                 break;
         }
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Checagem de o Item selecionado é o do perfil
@@ -315,8 +332,7 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
         return user;
     }
 
-
-    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onDialogPositiveClick(int codigo) {
 
@@ -325,5 +341,11 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
             requestPermissions(permissions, 2222);
 
         }
+
+
     }
+
+
 }
+
+
