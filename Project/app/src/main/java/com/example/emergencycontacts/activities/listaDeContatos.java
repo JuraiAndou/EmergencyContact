@@ -74,11 +74,8 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
                 user = (User) params.getSerializable("usuario");
                 if (user != null) {
                     setTitle("Contatos de Emergência de "+user.getNome());
-                    //  preencherListView(user); //Montagem do ListView
+                    atualizarListaDeContatos(user);
                     preencherListViewImagens(user);
-                    //  if (user.isTema_escuro()){
-                    //    ((ConstraintLayout) (lv.getParent())).setBackgroundColor(Color.BLACK);
-                    //}
                 }
             }
         }
@@ -155,12 +152,9 @@ public class listaDeContatos extends AppCompatActivity implements UIEducacionalP
                     if (checarPermissaoPhone_SMD(contatos.get(i).getNum())) {
 
                         Uri uri = Uri.parse(contatos.get(i).getNum());
-                        //  Intent itLigar = new Intent(Intent.ACTION_DIAL, uri);
                         Intent itLigar = new Intent(Intent.ACTION_CALL, uri);
                         startActivity(itLigar);
                     }
-
-
                 }
             });
 
